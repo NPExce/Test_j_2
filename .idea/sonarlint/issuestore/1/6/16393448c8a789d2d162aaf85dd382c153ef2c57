@@ -1,0 +1,7 @@
+
+g	java:S1120"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¶÷¡ñ¾1
+g	java:S1122"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¶÷¡ñ¾1
+a
+java:S21471"DCombine this catch with the one at line 47, which has the same body.(ä ¹€8À÷¡ñ¾1
+{
+java:S21421"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(ä ¹€8Á÷¡ñ¾1
