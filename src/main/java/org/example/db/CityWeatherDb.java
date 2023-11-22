@@ -12,8 +12,8 @@ public class CityWeatherDb {
 		return Optional.ofNullable(dataBase.get(id));
 	}
 	
-	public void add(CityDataEntity entity) {
-		dataBase.put(entity.getId(), entity);
+	public CityDataEntity add(CityDataEntity entity) {
+		return dataBase.put(entity.getId(), entity);
 	}
 	
 	public CityDataEntity change(CityDataEntity cityDataEntity) {

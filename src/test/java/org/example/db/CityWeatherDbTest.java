@@ -51,12 +51,7 @@ class CityWeatherDbTest {
 	@Test
 	void should_delete_an_element_from_database() {
 		// given
-		final long id = 1L;
-		final String cityName = "Warsaw";
-		final CityDataEntity cityDataEntity = new CityDataEntity();
-		cityDataEntity.setId(id);
-		cityDataEntity.setName(cityName);
-		dataBase.add(cityDataEntity);
+		final long id = createAndAddUser(1L, "Warszawa");
 		// when
 		dataBase.delete(id);
 		// then
@@ -65,5 +60,12 @@ class CityWeatherDbTest {
 		Assertions.assertFalse(isPresent);
 	}
 	
+	private static long createAndAddUser(Long id, String cityName) {
+		final CityDataEntity cityDataEntity = new CityDataEntity();
+		cityDataEntity.setId(id);
+		cityDataEntity.setName(cityName);
+		final CityDataEntity add = dataBase.add(cityDataEntity);
+		return id;
+	}
 	
 }
