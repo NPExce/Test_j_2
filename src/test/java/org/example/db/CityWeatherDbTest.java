@@ -3,6 +3,8 @@ package org.example.db;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CityWeatherDbTest {
@@ -26,8 +28,9 @@ class CityWeatherDbTest {
 		// when
 		dataBase.change(changedCityDataEntity);
 		// then
-		final CityDataEntity result = dataBase.get(id);
-		Assertions.assertEquals(result.getName(), newName);
+		final Optional<CityDataEntity> resultOpt = dataBase.get(id);
+		final String name = resultOpt.orElseThrow().getName();
+		Assertions.assertEquals(name, newName);
 	}
 	
 	@Test
@@ -40,9 +43,27 @@ class CityWeatherDbTest {
 		cityDataEntity.setName(cityName);
 		dataBase.add(cityDataEntity);
 		// when
-		final CityDataEntity result = dataBase.get(id);
+		final CityDataEntity result = dataBase.get(id).orElseThrow();
 		// then
 		Assertions.assertEquals(result.getName(), cityName);
 	}
+	
+	@Test
+	void should_delete_an_element_from_database() {
+		// given
+		final long id = 1L;
+		final String cityName = "Warsaw";
+		final CityDataEntity cityDataEntity = new CityDataEntity();
+		cityDataEntity.setId(id);
+		cityDataEntity.setName(cityName);
+		dataBase.add(cityDataEntity);
+		// when
+		dataBase.delete(id);
+		// then
+		final var resultOpt = dataBase.get(id);
+		final boolean isPresent = resultOpt.isPresent();
+		Assertions.assertFalse(isPresent);
+	}
+	
 	
 }

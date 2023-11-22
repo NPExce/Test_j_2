@@ -2,13 +2,14 @@ package org.example.db;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class CityWeatherDb {
 	
 	private static final Map<Long, CityDataEntity> dataBase = new HashMap<>();
 	
-	public CityDataEntity get(Long id) {
-		return dataBase.get(id);
+	public Optional<CityDataEntity> get(Long id) {
+		return Optional.ofNullable(dataBase.get(id));
 	}
 	
 	public void add(CityDataEntity entity) {
@@ -23,5 +24,9 @@ public class CityWeatherDb {
 		toChange.setWeatherDataEntity(cityDataEntity.getWeatherDataEntity());
 		// zapisać ponownie do mapy ? jak dodajemy po kluczu bwartość
 		return dataBase.put(cityDataEntity.getId(), toChange);
+	}
+	
+	public void delete(Long id) {
+		dataBase.remove(id);
 	}
 }
