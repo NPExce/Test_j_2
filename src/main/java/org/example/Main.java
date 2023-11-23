@@ -28,19 +28,19 @@ public class Main {
 					System.out.println("Type a city to find");
 					Scanner scCityToFind = new Scanner(System.in);
 					String userInputCityToFind = scCityToFind.nextLine();
-					// find a city
+
 					final CityOwResponse weatherFromOpenWeather = new WeatherService().getWeatherFromOpenWeather(userInputCityToFind);
 					String message = """
-             				------------------------------
-       						City weather data from [%s] :
-       						- city name: 		[%s]
-       						- wind speed:		[%s]
-       						- temp: 			[%s]
-       						- pressure: 		[%s]
+							------------------------------
+							City weather data from [%s] :
+							- city name: 		[%s]
+							- wind speed:		[%s]
+							- temp: 			[%s]
+							- pressure: 		[%s]
 							""".formatted(
 							weatherFromOpenWeather.getDt(),
 							weatherFromOpenWeather.getName(),
-							weatherFromOpenWeather.getWind(),
+							weatherFromOpenWeather.getWind().getSpeed(),
 							weatherFromOpenWeather.getMain().getTemp(),
 							weatherFromOpenWeather.getMain().getPressure()
 					);
